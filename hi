@@ -1,0 +1,9 @@
+Hi!
+
+ main.c includes compiler.h with compile 
+function.
+
+ compile.c reads the file and compiles it 
+writing output file.
+ it includes opcode.h with opcode 
+function.
