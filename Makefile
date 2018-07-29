@@ -1,4 +1,4 @@
-a.out: main.o compiler.o
+a.out: main.o compiler.o read_write.o
 	gcc main.o compiler.o read_write.o -o a.out
 
 main.o: main.c
