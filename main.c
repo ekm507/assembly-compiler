@@ -6,7 +6,8 @@
 
 
 #include <stdio.h>
-#include <compiler.h>
+#include <string.h>
+#include "compiler.h"
 
 int main(int argc, char**argv)
 {
@@ -15,19 +16,22 @@ int main(int argc, char**argv)
 	if(argc < 2)
 		scanf("%s", filename);
 	else
-		filename = argv[1];
+		strcpy(filename, argv[1]);
 
 	char outputfilename[1000];
 	if(argc < 3)
-		outputfilename = "output.bin"
+		strcpy(outputfilename, "output.bin");
 	else
-		outputfilename = argv[2];
+		strcpy(outputfilename,  argv[2]);
+
 	//call the compile function
-	int laststatus = compile(filename, outputfiolename);
+	int laststatus = compile(filename, outputfilename);
+
+	//check if it was successful
 	if(laststatus)
 		printf("COMPILATION FAILED!!!!\n");
 	else
-		printf("succfully compiled into : %s", outputfilename);
+		printf("succfully compiled into : %s\n", outputfilename);
 
 	return 0;
 }

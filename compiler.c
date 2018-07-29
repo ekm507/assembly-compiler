@@ -1,7 +1,17 @@
+
+#include "compiler.h"
 #include <stdio.h>
 
-int compiler(char* filename, char* outputfilename)
+int compile(char* filename, char* outputfilename)
 {
+	FILE *codefile;
+	codefile = fopen(filename, "r");
+	if(codefile == NULL)
+	{
+		perror("error openinig file\n");
+		return -1;
+	}
+
 
 	return 0;
 }
