@@ -1,5 +1,6 @@
 #include "read_write.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 unsigned long int getfilesize(FILE *file)
 {
