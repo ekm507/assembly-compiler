@@ -7,6 +7,6 @@
 #ifndef COMPILER_H
 #define COMPILER_H
 
-int compile(char* filename, char* outputfilename);
+int compile(char* code, unsigned long int size);
 
 #endif //COMPILER_H

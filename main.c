@@ -11,6 +11,7 @@
 
 int main(int argc, char**argv)
 {
+
 	//get filename to compile
 	char filename[1000];
 	if(argc < 2)
@@ -24,12 +25,18 @@ int main(int argc, char**argv)
 	else
 		strcpy(outputfilename,  argv[2]);
 
-	//call the compile function
-	int laststatus = -1;
-	laststatus = compile(filename, outputfilename);
-
+	//load file into the memory
+	FILE* codefile;
+	codefile = fopen(filename, "r");
+	char code[10000];
+	unsigned long int i = 0;
+	while(!feof(codefile))
+		code[i++] = fgetc(codefile);
+	fclose(codefile);
+	int status = -1;
+	status = compile(code, i);
 	//check if it was successful
-	if(laststatus)
+	if(status)
 		printf("COMPILATION FAILED!!!!\n");
 	else
 		printf("succfully compiled into : %s\n", outputfilename);

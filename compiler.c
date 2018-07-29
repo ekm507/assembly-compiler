@@ -4,18 +4,38 @@
 */
 
 #include "compiler.h"
-#include "read_write.h"
 #include <stdio.h>
 
-int compile(char* filename, char* outputfilename)
+int compile(char* code, unsigned long int size)
 {
-	//open the source file and load it to code variable
-	char *code;
-	int status = -1;
-	status = read(filename, code);
-	if(!status)
-		return -1;
-
+	char words[1000][3][10];
+	int j = 0, k = 0, p = 0;;
+	for(int i = 0; i < size; i++)
+	{
+		if(code[i] == 10)
+		{
+			while(code[i++] == 10);
+			j++;
+			k = 0;
+			p = 0;
+		}
+		else if(code[i] == 32)
+		{
+			while(code[i++] == 32);
+			if(code[i] != ';' || 
+code[i] != 10)
+			{
+				p++;
+				k = 0;
+			}
+		}
+		else if(code[i] == ';')
+			while(code[i++]!=10);
+		else
+			words[j][p][k++] = code[i];
+	}
+	for(int hh = 0; hh<j; hh++)
+		printf("%s\n", words[hh][1]);
 	//returns 0 if there are no errors.
 	return 0;
 }
