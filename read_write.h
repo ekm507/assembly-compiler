@@ -8,5 +8,5 @@
 #include <stdio.h>
 
 int read(char *filename, char *sourcecode);
-int write(char *filename, char hexcode);
+int write(char *filename, char *hexcode);
 unsigned long int getfilesize(FILE *file);

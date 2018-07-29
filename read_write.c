@@ -34,6 +34,9 @@ getfilesize(codefile);
 	for(i = 0; i < size; i++)
 		sourcecode[i] = fgetc(codefile);
 
+	//close the file
+	fclose(codefile);
+
 	//returns 0 if there are no errors.
 	return 0;
 }

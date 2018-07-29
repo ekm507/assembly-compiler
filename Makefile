@@ -11,4 +11,4 @@ read_write.o: read_write.c read_write.h
 	gcc -c read_write.c
 
 clean:
-	rm *.o
+	rm *.o a.out
