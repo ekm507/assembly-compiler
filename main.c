@@ -25,7 +25,8 @@ int main(int argc, char**argv)
 		strcpy(outputfilename,  argv[2]);
 
 	//call the compile function
-	int laststatus = compile(filename, outputfilename);
+	int laststatus = -1;
+	laststatus = compile(filename, outputfilename);
 
 	//check if it was successful
 	if(laststatus)
