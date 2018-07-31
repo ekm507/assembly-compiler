@@ -31,7 +31,7 @@ int main(int argc, char**argv)
 	char code[10000];
 	unsigned long int i = 0;
 	while(!feof(codefile))
-		code[i++] = fgetc(codefile);
+		code[++i] = fgetc(codefile);
 	fclose(codefile);
 	int status = -1;
 	status = compile(code, i);

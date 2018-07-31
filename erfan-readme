@@ -1,2 +1,16 @@
 alloc arrays dynamically after getting file size
 
+##*HOW TO REMOVE COMMENTS AND OTHER USELESS THINGS:*
+
+#*Method 1:*
+read the file char-by-char.
+when you get any ';' then you change it and any chars after it with a ';'  .
+(if there is any other comment type, remove it in this level).
+then start reading the file once again.
+when you get newline characters(ASCII = 10) do this:
+until you haven't reached any character other than[ newline character or space character if 
+';' ] , change any character you see with ';'.
+when you get space characters simultanuesly more than one, change the others wuth ';'.
+**Finally** remove all the ';' from the code.
+*proof of work:*
+I have done prooving it, so dont worry :))))
