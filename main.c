@@ -1,7 +1,12 @@
 /* assembly compiler for "The 16-bit CPU"
 *  main.c
 *  the main file code.
+*
+* usage :
+* ./a.out [asm code file name] -o [output file name]
 */
+
+
 //TODO : check if file opens without any errors
 
 
@@ -19,17 +24,27 @@ int main(int argc, char**argv)
 	else
 		strcpy(filename, argv[1]);
 
+	//get output filename
 	char outputfilename[1000];
-	if(argc < 3)
-		strcpy(outputfilename, "output.bin");
-	else
-		strcpy(outputfilename,  argv[2]);
+	strcpy(outputfilename, "output.bin");
+	for(int i = 2; i < argc; i++)
+		if(argv[i] == "-o")
+		{
+			strcpy(outputfilename, argv[i + 1]);
+			break;
+		}
 
 	//load file into the memory
 	FILE* codefile;
 	codefile = fopen(filename, "r");
-	char code[10000];
+
+	//the code will be stored here
+	char *code;
+
+	unsigned long int size;
 	unsigned long int i = 0;
+
+
 	while(!feof(codefile))
 		code[++i] = fgetc(codefile);
 	fclose(codefile);
