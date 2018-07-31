@@ -11,6 +11,7 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "compiler.h"
 
@@ -34,14 +35,25 @@ int main(int argc, char**argv)
 			break;
 		}
 
-	//load file into the memory
+	//open the code file
 	FILE* codefile;
 	codefile = fopen(filename, "r");
 
+<<<<<<< HEAD
 	//the code will be stored here
 	char *code;
 
 	unsigned long int size;
+=======
+	unsigned long int size;
+
+	fseek(codefile, 0, SEEK_END); // seek to end of file
+	size = ftell(codefile); // get current file pointer
+	fseek(codefile, 0, SEEK_SET); // seek back to beginning of file
+
+	char *code;
+	code = malloc(size * sizeof(char));
+>>>>>>> dynamic-code-size
 	unsigned long int i = 0;
 
 
