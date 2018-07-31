@@ -33,8 +33,13 @@ int main(int argc, char**argv)
 	while(!feof(codefile))
 		code[++i] = fgetc(codefile);
 	fclose(codefile);
+
+	//compile the code
 	int status = -1;
 	status = compile(code, i);
+
+	printf("\n--------------------------------------\n");
+
 	//check if it was successful
 	if(status)
 		printf("COMPILATION FAILED!!!!\n");

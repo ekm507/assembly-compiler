@@ -1,6 +1,7 @@
 #include "clean-code.h"
+#include <stdio.h>
 
-unsigned long int cleancode(char *code, unsigned long int size)
+unsigned long int cleancode(char* code, unsigned long int size)
 {
 	unsigned long int i;
 
@@ -9,9 +10,8 @@ unsigned long int cleancode(char *code, unsigned long int size)
 	{
 		if(code[i] == ';')
 		{
-			while(code[i++] != 10) // ASCII 10 = newline
+			while(code[++i] != '\n' && i < size) // ASCII 10 = newline
 				code[i] = ';';
-			i--;
 		}
 	}
 
@@ -21,19 +21,21 @@ unsigned long int cleancode(char *code, unsigned long int size)
 	{
 		if(code[i] == 10) //ASCII 10 = newline
 		{
-			while(code[i++] == 10 || code[i] == ';' || code[i] == ' ')
+			while( ( code[++i] == 10 || code[i] == ';' || code[i] == ' ' ) && i < 
+size)
 				code[i] = ';';
 			i--;
 		}
 	}
 	if(code[size - 1] == 10 || code[size - 1] == ' ')
 		code[size - 1] = ';';
+
 	//level.3 : delete useless space characters
 	for(i = 0; i < size; i++)
 	{
 		if(code[i] == ' ')
 		{
-			while(code[i++] == ' ')
+			while(code[++i] == ' ' && i < size)
 				code[i] = ';';
 			i--;
 		}
@@ -44,7 +46,7 @@ unsigned long int cleancode(char *code, unsigned long int size)
 	for(i = 0; i < size - 1; i++)
 	{
 		if(code[i] != ';')
-			code[ ++j ] = code[i];
+			code[ j++ ] = code[i];
 	}
 	//finish :)
 
