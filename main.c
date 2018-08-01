@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "compiler.h"
+#include "process.h"
 
 int main(int argc, char**argv)
 {
@@ -57,10 +57,16 @@ int main(int argc, char**argv)
 		code[++i] = fgetc(codefile);
 	fclose(codefile);
 
-	//compile the code
-	int status = -1;
-	status = compile(code, i);
+	FILE *outputfile;
+	outputfile = fopen(outputfilename, "r");
 
+
+	//process and compile the code
+	int status = -1;
+	status = process(code, i, outputfile);
+
+
+	//last things
 	printf("\n--------------------------------------\n");
 
 	//check if it was successful

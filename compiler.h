@@ -1,12 +1,8 @@
-/* Assembly compiler for "The 16-bit CPU"
-*  compile.h
-*  includeing:
-	compile function
-*/
-
 #ifndef COMPILER_H
 #define COMPILER_H
 
-int compile(char* code, unsigned long int size);
+#include <stdio.h>
 
-#endif //COMPILER_H
+void compile(char *code[10], unsigned long int size, FILE *outputfile);
+
+#endif//COMPILER_H

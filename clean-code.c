@@ -53,3 +53,15 @@ size)
 	//return new code size.
 	return j;
 }
+
+//TODO
+unsigned long int wordcount(char *code, unsigned long int size)
+{
+	return 0;
+}
+
+//TODO
+void chartoword(char *code, unsigned long int size, char *words[10])
+{
+	;
+}
