@@ -54,14 +54,31 @@ size)
 	return j;
 }
 
-//TODO
+
 unsigned long int wordcount(char *code, unsigned long int size)
 {
-	return 0;
+	if(size == 0)
+		return 0;
+
+	unsigned long int number_of_words = 1;
+	for(unsigned long int i = 0; i < size; i++)
+		if(code[i] == 10 || code[i] == 32) //ASCII for newline or whitespace
+			number_of_words++;
+	return number_of_words;
 }
 
-//TODO
+
 void chartoword(char *code, unsigned long int size, char *words[10])
 {
-	;
+	unsigned long int i, j = 0, k = 0;
+	for(i = 0; i < size; i++)
+	{
+		if(code[i] == 10 || code[i] == 32) //ASCII for newline or whitespace
+		{
+			k = 0;
+			j++;
+			continue;
+		}
+		words[j][k++] = code[i];
+	}
 }

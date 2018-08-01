@@ -58,7 +58,7 @@ int main(int argc, char**argv)
 	fclose(codefile);
 
 	FILE *outputfile;
-	outputfile = fopen(outputfilename, "r");
+	outputfile = fopen(outputfilename, "w");
 
 
 	//process and compile the code
@@ -68,6 +68,8 @@ int main(int argc, char**argv)
 
 	//last things
 	printf("\n--------------------------------------\n");
+
+	fclose(outputfile);
 
 	//check if it was successful
 	if(status)

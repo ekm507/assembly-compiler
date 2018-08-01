@@ -35,8 +35,12 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 
 	//print the cleaned code.
 	unsigned long int i;
-	for(i = 0; i < size; i++)
-		printf("%c", code[i]);
+	for(i = 0; i < number_of_words; i++)
+		printf("%s ", words[i]);
+
+	//free the words code array
+	free(words);
+
 	//returns 0 if there are no errors.
 	return 0;
 }
