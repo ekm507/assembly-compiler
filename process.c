@@ -22,7 +22,7 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 	//alloc words array
 	char *words[10];
 	for(unsigned long int i = 0; i < number_of_words; i++)
-		words[i] = (char*)malloc(number_of_words * sizeof(char) );
+		words[i] = (char*)malloc(10 * sizeof(char) );
 
 	//load the code to words array(word by word)
 	chartoword(code, size, words);
