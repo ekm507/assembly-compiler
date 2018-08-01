@@ -11,7 +11,7 @@ unsigned long int cleancode(char* code, unsigned long int size)
 	{
 		if(code[i] == ';')
 		{
-			while(code[++i] != '\n' && i < size) // ASCII 10 = newline
+			while(code[++i] != '\n' && i < size)
 				code[i] = ';';
 		}
 	}
@@ -25,7 +25,7 @@ unsigned long int cleancode(char* code, unsigned long int size)
 	//after newline characters.
 	for(i = 0; i < size - 1; i++)
 	{
-		if(code[i] == 10) //ASCII 10 = newline
+		if(code[i] == '\n')
 		{
 			while( ( code[++i] == '\n' || code[i] == ';' || code[i] == ' ' ) && i 
 < size)
@@ -79,7 +79,7 @@ unsigned long int wordcount(char *code, unsigned long int size)
 
 	unsigned long int number_of_words = 1;
 	for(unsigned long int i = 0; i < size; i++)
-		if(code[i] == '\n' || code[i] == ' ') //ASCII for newline or whitespace
+		if(code[i] == '\n' || code[i] == ' ')
 			number_of_words++;
 	return number_of_words;
 }
@@ -87,7 +87,28 @@ unsigned long int wordcount(char *code, unsigned long int size)
 
 //---------------------------------------------------------------------------------------//
 
-void chartoword(char *code, unsigned long int size, char *words)
+void measure_words_length(char *code, unsigned long int size, int * words_length)
+{
+	//length of the current word
+	int k = 0;
+	//number of the current word
+	int j = 0;
+
+	for(unsigned long int i = 0; i < size; i++)
+	{
+		if(code[i] == '\n' || code[i] == ' ')
+		{
+			words_length[j++] = k;
+			k = 0;
+		}
+		else
+			k++;
+	}
+}
+
+//---------------------------------------------------------------------------------------//
+
+void chartoword(char *code, unsigned long int size, char **words)
 {
 
 	int max_word_length = 10;
@@ -104,21 +125,14 @@ void chartoword(char *code, unsigned long int size, char *words)
 
 	for(i = 0; i < size; i++)
 	{
-		if(code[i] == 10) //ASCII for newline or whitespace
+		if(code[i] == '\n' || code[i] == ' ')
 		{
+			words[j][k+1] = '\0';
 			k = 0;
-			l = 0;
 			j++;
-			continue;
 		}
 
-		else if(code[i] == 32)
-		{
-			k++;
-			l = 0;
-		}
-
-		p = j * max_words_in_a_line  * max_word_length + k * max_word_length + k;
-		words[p] = code[i];
+		else
+			words[j][k] = code[i];
 	}
 }
