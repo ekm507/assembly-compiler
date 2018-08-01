@@ -3,6 +3,6 @@
 
 #include <stdio.h>
 
-void compile(char *code[10], unsigned long int size, FILE *outputfile);
+void compile(char *code, unsigned long int size, FILE *outputfile);
 
 #endif//COMPILER_H
