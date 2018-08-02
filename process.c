@@ -18,6 +18,15 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 	//remove all comments and useless newline or space characters.
 	size = cleancode(code, size);
 
+	//count number of words
+	unsigned long int number_of_words;
+	number_of_words = wordcount(code, size);
+
+	//measure size of each word
+	int *words_length;
+	words_length = (int *)malloc(number_of_words * sizeof(int) );
+	measure_words_length(code, size, words_length);
+
 	//count number of lines in the code.
 	unsigned long int number_of_lines;
 	number_of_lines = countlines(code, size);
@@ -62,6 +71,10 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 
 	//compile the code
 	compile(words, number_of_lines, words_in_line, outputfile);
+
+	//print number of words in each line
+	for(unsigned long int i = 0; i < number_of_lines; i++)
+		printf("%lu %d\n", i, words_in_line[i]);
 
 	//print the cleaned code.
 	unsigned long int i;
