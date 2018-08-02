@@ -38,7 +38,8 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 				array[word][wordchar+1] = '\0';
 				word = 0;
 				wordchar = 0;
-				check(array);
+				check(array, line);
+				line++;
 				strcpy(array[4], "");
 			}
 			else
@@ -46,7 +47,7 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 		}
 		else
 		{
-			send_error(0);
+			send_error(0, line);
 			while(i++ != '\n' && i < size);
 			i--;
 		}

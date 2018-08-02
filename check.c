@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define error(a) send_error((a), line)
+
 int last_something = 0;
 
 //check if last char of the word is what you want
@@ -16,14 +18,16 @@ int wordlast(char *word, char last)
 	return 0;
 }
 
-void check(char array[5][10])
+void check(char array[5][10], unsigned long int line)
 {
+	static char lable[100][5];
+	static int last_lable = 0;
 	int has_lable = 1;
 	if(!wordlast(array[1], ',') )
 	{
 		if(!strcmp(array[4], "") )
 		{
-			send_error(1);// ERROR # 1
+			error(1);// ERROR # 1
 			return;
 		}
 
@@ -37,7 +41,17 @@ void check(char array[5][10])
 	}
 
 	//start
-
+	if(has_lable)
+	{
+		if(!good_lable_name(array[1]) )
+			error(2); //ERROR # 2
+		else if(reserved(array[1]) )
+			error(3); //ERROR # 3
+		else
+		{
+			strcpy(lable[last_lable++], array[1]);
+		}
+	}
 
 
 }
