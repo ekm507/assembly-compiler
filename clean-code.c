@@ -87,7 +87,7 @@ unsigned long int wordcount(char *code, unsigned long int size)
 
 //---------------------------------------------------------------------------------------//
 
-void measure_words_length(char *code, unsigned long int size, int * words_length)
+void measure_words_length(char *code, unsigned long int size, int *words_length)
 {
 	//length of the current word
 	int k = 0;
@@ -108,31 +108,67 @@ void measure_words_length(char *code, unsigned long int size, int * words_length
 
 //---------------------------------------------------------------------------------------//
 
-void chartoword(char *code, unsigned long int size, char **words)
+void loadwords(char *code, unsigned long int size, char ***words)
 {
 
 	int max_word_length = 10;
 	int max_words_in_a_line = 4;
 
-	//code [i] , words[p]
-	unsigned long int i, p;
-	//line number
-	unsigned long int  j = 0;
-	//word number in a line
-	unsigned long int  k = 0;
-	//char number in a word
-	unsigned long int  l = 0;
+	int line = 0;
+	int word_in_line = 0;
+	int wordchar = 0;
 
-	for(i = 0; i < size; i++)
-	{
-		if(code[i] == '\n' || code[i] == ' ')
+	for(unsigned long int i = 0; i < size; i++)
+		if(code[i] == '\n')
 		{
-			words[j][k+1] = '\0';
-			k = 0;
-			j++;
+			line++;
+			word_in_line = 0;
+			wordchar = 0;
+		}
+		else if(code[i] == ' ')
+		{
+			words[line][word_in_line][wordchar + 1] = '\0';
+			word_in_line++;
+			wordchar = 0;
+		}
+		else
+		{
+			words[line][word_in_line][wordchar] = code[i];
+			wordchar++;
 		}
 
-		else
-			words[j][k] = code[i];
-	}
 }
+
+//---------------------------------------------------------------------------------------//
+
+unsigned long int countlines(char *code, unsigned long int size)
+{
+	unsigned long int lines = 0;
+	for(unsigned long int i = 0; i < size; i++)
+		if(code[i] == '\n')
+			lines++;
+
+	return lines;
+}
+
+//---------------------------------------------------------------------------------------//
+
+void countwords(char *code, unsigned long int size, int *words_in_line)
+{
+	unsigned long int line = 0;
+	words_in_line[0] = 0;
+
+	for(unsigned long int i= 0; i < size; i++)
+		if(code[i] == ' ')
+			words_in_line[line]++;
+		else if(code[i] == '\n')
+			words_in_line[++line] = 0;
+}
+
+//---------------------------------------------------------------------------------------//
+
+
+//---------------------------------------------------------------------------------------//
+
+
+//---------------------------------------------------------------------------------------//

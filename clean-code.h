@@ -5,8 +5,12 @@ unsigned long int cleancode(char *code, unsigned long int size);
 
 unsigned long int wordcount(char *code, unsigned long int size);
 
-void chartoword(char *code, unsigned long int size, char **words);
+void loadwords(char *code, unsigned long int size, char ***words);
 
-void measure_words_length(char *code, unsigned long int sizem, int *words_length);
+unsigned long int countlines(char *code, unsigned long int size);
+
+void countwords(char *code, unsigned long int size, int *words_in_line);
+
+void measure_words_length(char *code, unsigned long int size, int *words_length);
 
 #endif //CLEAN_CODE_H
