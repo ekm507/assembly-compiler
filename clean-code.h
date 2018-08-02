@@ -1,11 +1,13 @@
 #ifndef CLEAN_CODE_H
 #define CLEAN_CODE_H
 
+#include <stdlib.h>
+
 unsigned long int cleancode(char *code, unsigned long int size);
 
 unsigned long int wordcount(char *code, unsigned long int size);
 
-void loadwords(char *code, unsigned long int size, char ***words);
+void loadwords(char *code, unsigned long int size, char **words);
 
 unsigned long int countlines(char *code, unsigned long int size);
 

@@ -40,23 +40,22 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 	countwords(code, size, words_in_line);
 
 	//code will be stored in this array word-by-word
-	char ***words;
+	char **words;
 
-	//allocate words array words[a][b][c]
-	// a = [number of lines in this code]
-	// b = [number of words in each line]
-	// c = [number of chars in each word]
-	words = (char***)malloc(number_of_lines * sizeof(char**));
-	unsigned long int wordnumber = 0;
-	for(unsigned long int i = 0; i < number_of_lines; i++)
+	//allocate words array words[a][b]
+	//a : number of word
+	//b : word
+	words = (char **)malloc((number_of_lines + number_of_words) * sizeof(char *));
+	int word_of_line = 0;
+	unsigned long int line = 0;
+	for(unsigned long int i = 0; i < number_of_lines + number_of_words; i++)
 	{
-		words[i] = (char**)malloc(words_in_line[i] * sizeof(char*) );
-		for(unsigned long int j = 0; j < words_in_line[i]; j++)
+		words[i] = (char *)malloc(words_in_line[i] * sizeof(char) );
+		if(++word_of_line >= words_in_line[line])
 		{
-			words[i][j] = (char*)malloc( (words_length[wordnumber] + 1) * sizeof(char));
-			wordnumber++;
-		// notice :( words_lenght[wordnumber] + 1) :
-		//  word length is added by 1 to be space for the '\0' character
+			words[++i] = (char *)malloc(2 * sizeof(char) );
+			word_of_line = 0;
+			line++;
 		}
 	}
 
@@ -78,20 +77,12 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 
 	//print the cleaned code.
 	unsigned long int i;
-	for(i = 0; i < number_of_lines; i++)
-	{
-		for(int j = 0; j < words_in_line[i]; j++)
-			printf("%s", words[i][j] );
-		printf("-");
-	}
+	for(i = 0; i < number_of_lines + number_of_words; i++)
+		printf("%s ", words[i] );
 
 	//free the words code array
-	for(unsigned long int i = 0; i < number_of_words; i++)
-	{
-		for(unsigned long int j = 0; j < words_in_line[i]; j++)
-			free(words[i][j]);
+	for(unsigned long int i = 0; i < number_of_words + number_of_lines; i++)
 		free(words[i]);
-	}
 	free(words);
 
 	//free words_in_line

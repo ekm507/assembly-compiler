@@ -1,6 +1,6 @@
 #include "clean-code.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 
 unsigned long int cleancode(char* code, unsigned long int size)
 {
@@ -98,7 +98,7 @@ void measure_words_length(char *code, unsigned long int size, int *words_length)
 	{
 		if(code[i] == '\n' || code[i] == ' ')
 		{
-			words_length[j++] = k;
+		words_length[j++] = k;
 			k = 0;
 		}
 		else
@@ -108,32 +108,25 @@ void measure_words_length(char *code, unsigned long int size, int *words_length)
 
 //---------------------------------------------------------------------------------------//
 
-void loadwords(char *code, unsigned long int size, char ***words)
+void loadwords(char *code, unsigned long int size, char **words)
 {
-
-	int max_word_length = 10;
-	int max_words_in_a_line = 4;
-
-	int line = 0;
-	int word_in_line = 0;
 	int wordchar = 0;
-
+	int number_of_word = 0;
 	for(unsigned long int i = 0; i < size; i++)
 		if(code[i] == '\n')
 		{
-			line++;
-			word_in_line = 0;
+			strcpy(words[++number_of_word], ";");
 			wordchar = 0;
+			number_of_word++;
 		}
 		else if(code[i] == ' ')
 		{
-			words[line][word_in_line][wordchar + 1] = '\0';
-			word_in_line++;
+			number_of_word++;
 			wordchar = 0;
 		}
 		else
 		{
-			words[line][word_in_line][wordchar] = code[i];
+			words[number_of_word][wordchar] = code[i];
 			wordchar++;
 		}
 
