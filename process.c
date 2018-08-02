@@ -70,13 +70,13 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 	free(code);
 
 	//compile the code
-//	compile(words, number_of_lines, words_in_line, outputfile);
+	compile(words, number_of_lines, words_in_line, outputfile);
 
 	//print number of words in each line
 	for(unsigned long int i = 0; i < number_of_lines; i++)
 		printf("%lu %d\n", i, words_in_line[i]);
 
-/*	//print the cleaned code.
+	//print the cleaned code.
 	unsigned long int i;
 	for(i = 0; i < number_of_lines; i++)
 	{
@@ -84,7 +84,7 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 			printf("%s", words[i][j] );
 		printf("-");
 	}
-*/
+
 	//free the words code array
 	for(unsigned long int i = 0; i < number_of_words; i++)
 	{
