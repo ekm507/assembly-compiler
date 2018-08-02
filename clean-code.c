@@ -162,7 +162,10 @@ void countwords(char *code, unsigned long int size, int *words_in_line)
 		if(code[i] == ' ')
 			words_in_line[line]++;
 		else if(code[i] == '\n')
+		{
+			words_in_line[line]++;
 			words_in_line[++line] = 0;
+		}
 }
 
 //---------------------------------------------------------------------------------------//
