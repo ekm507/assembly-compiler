@@ -78,14 +78,14 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 	free(code);
 
 	//compile the code
-	compile(words, number_of_words, outputfile);
+	compile(words, number_of_lines, words_in_line, outputfile);
 
 	//print the cleaned code.
 	unsigned long int i;
 	for(i = 0; i < number_of_lines; i++)
 	{
-		for(int j = 0; j < 10; j++)
-			printf("%c", words[i * 10 + j]);
+		for(int j = 0; j < words_in_line[i]; j++)
+			printf("%s", words[i][j] );
 		printf("-");
 	}
 
