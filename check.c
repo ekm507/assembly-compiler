@@ -116,7 +116,9 @@ void check(char array[5][10], unsigned long int line)
 			{
 				//check if the argument is predefined
 				if(! predefined(array[3] ) )
-					error(14); //ERROR # 14
+					//but some instructions dont want a predefined one
+					if( ( strcmp(array[2], "HEX" ) && strcmp(array[2], "DEC") && strcmp(array[2], "ORG") ) )
+						error(14); //ERROR # 14
 			}
 		}
 	}
@@ -162,10 +164,6 @@ void check(char array[5][10], unsigned long int line)
 		if(array[3][0] != '\0' )
 			error(9);//ERROR # 9
 	}
-
-	//check if there is an instruction
-	else if(array[2][0] == '\0')
-		error(10);//ERROR # 10
 
 }
 
@@ -224,7 +222,7 @@ int is_dec(char word[10])
 	int  k = 0;
 	if(length < 1)
 		return 0;
-	if(word[0] == '-')
+	if(word[0] == '-' || word[0] == '+')
 		k = 1;
 	for(int i = k; i < length; i++)
 		if(word[i] > '9' || word[i] < '0')
