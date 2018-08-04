@@ -2,19 +2,23 @@
 #include "errors.h"
 #include <stdio.h>
 
-void send_error(int error_type, unsigned long int line)
+void send_error(int error_type, unsigned long int line, char array[5][10])
 {
-	printf("#ERROR : %d in line %lu :\n ", error_type, line);
+	printf("\nERROR #%d in line %lu :\n", error_type, line);
+
+	for(int i = 0; i < 4; i++)
+		printf("%s ", array[i]);
+	printf("\n");
 
 
 	if(error_type == 0)
-		printf("more than 4 arguments.\n");
+		printf("more than 4 arguments.");
 	else if(error_type == 1)
-		printf("too many arguments(array[1] == "" while array[4] != "").");
+		printf("too many arguments(array[1] == \"\" while array[4] != \"\").");
 	else if(error_type == 2)
-		printf("not a nice lable name.\n");
+		printf("not a nice lable name.");
 	else if(error_type == 3)
-		printf("lable name can't be a reserved name.\n");
+		printf("lable name can't be a reserved name.");
 	else if(error_type == 2)
 		printf("\n");
 	printf("\n");

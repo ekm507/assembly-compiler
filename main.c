@@ -55,6 +55,7 @@ int main(int argc, char**argv)
 
 	while(!feof(codefile))
 		code[++i] = fgetc(codefile);
+
 	fclose(codefile);
 
 	FILE *outputfile;

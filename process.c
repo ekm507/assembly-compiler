@@ -18,14 +18,13 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 
 	//remove all comments and useless newline or space characters.
 	size = cleancode(code, size);
-
 	char array[5][10] = {"", "", "", "", ""};
-	unsigned long int line = 0;
-	int word = 0;
+	unsigned long int line = 1;
+	int word = 1;
 	int wordchar = 0;
 	for(unsigned long int i = 0; i < size; i++)
 	{
-		if(word < 4)
+		if(word < 5)
 		{
 			if(code[i] == ' ')
 			{
@@ -36,19 +35,25 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 			else if(code[i] == '\n')
 			{
 				array[word][wordchar+1] = '\0';
-				word = 0;
+				word = 1;
 				wordchar = 0;
+				//check if there is any bug
 				check(array, line);
 				line++;
+				strcpy(array[1], "");
+				strcpy(array[2], "");
+				strcpy(array[3], "");
 				strcpy(array[4], "");
 			}
 			else
-				array[word][wordchar] = code[i];
+			{
+				array[word][wordchar++] = code[i];
+			}
 		}
 		else
 		{
-			send_error(0, line);
-			while(i++ != '\n' && i < size);
+			send_error(0, line, array);
+			while(++i != '\n' && i < size)
 			i--;
 		}
 	}
