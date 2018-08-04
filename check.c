@@ -18,12 +18,15 @@ int good_lable_name(char word[10]);
 int wordlast(char word[10], char last);
 int is_hex(char word[10]);
 int is_dec(char word[10]);
+int predefined(char word[10]);
+
+
+static char lable[100][5];
+static int last_lable = 0;
 
 void check(char array[5][10], unsigned long int line)
 {
 //	printf(" <%s - %s - %s - %s\n", array[1], array[2], array[3], array[4]);
-	static char lable[100][5];
-	static int last_lable = 0;
 	int has_lable;
 	if(wordlast(array[1], ',') )
 	{
@@ -75,6 +78,11 @@ void check(char array[5][10], unsigned long int line)
 	{
 		if(strcmp(array[2], "END") && array[3][0] == '\0')
 			error(13); //ERROR # 13
+		else
+		{
+			if(! predefined(array[3] ) )
+				error(14); //ERROR # 14
+		}
 	}
 
 
@@ -180,4 +188,19 @@ int is_dec(char word[10])
 	return 1;
 }
 
+//---------------------------------------------------------------------------
+
+int predefined(char word[10])
+{
+	for(int i = 0; i < last_lable; i++)
+	{
+		if(!strcmp(word, lable[i]) )
+			return 1;
+	}
+
+	return 0;
+}
+
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 //---------------------------------------------------------------------------
