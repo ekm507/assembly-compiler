@@ -71,9 +71,15 @@ void check(char array[5][10], unsigned long int line)
 	{
 		error(11); //ERROR # 11
 	}
+	else
+	{
+		if(strcmp(array[2], "END") && array[3][0] == '\0')
+			error(13); //ERROR # 13
+	}
+
 
 	if(reserved(array[3] ) )
-		error(12);
+		error(12); //ERROR # 12
 
 	if(!strcmp(array[2], "HEX") )
 	{

@@ -52,6 +52,9 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 		case 12 :
 			printf("a reserved name can't come immediately after an instruction");
 			break;
+		case 13 :
+			printf("missing operand");
+			break;
 
 		default :
 			printf("unknown error! call the idiot programmer.");
