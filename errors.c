@@ -49,6 +49,9 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 		case 11 :
 			printf("there should be an instruction here");
 			break;
+		case 12 :
+			printf("a reserved name can't come immediately after an instruction");
+			break;
 
 		default :
 			printf("unknown error! call the idiot programmer.");
