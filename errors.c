@@ -28,6 +28,28 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 		case 4 :
 			printf("last parameter should be either i or \"\"");
 			break;
+		case 5 :
+			printf("there should be a 16-bit hex number after HEX instruction");
+			break;
+		case 6 :
+			printf("there should be a 16-bit HEX number after ORG instruction");
+			break;
+		case 7 :
+			printf("there should be a 16-bit decimal number after DEC instruction");
+			break;
+		case 8 :
+			printf("decimal number after DEC instruction should be 16-bit");
+			break;
+		case 9 :
+			printf("there should be nothing after END instruction");
+			break;
+		case 10 :
+			printf("missing instruction");
+			break;
+		case 11 :
+			printf("there should be an instruction here");
+			break;
+
 		default :
 			printf("unknown error! call the idiot programmer.");
 	}
