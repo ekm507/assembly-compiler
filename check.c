@@ -50,10 +50,9 @@ void check(char array[5][10], unsigned long int line)
 			error(2); //ERROR # 2
 		else if(reserved(array[1]) )
 			error(3); //ERROR # 3
-		else
-		{
-			strcpy(lable[last_lable++], array[1]);
-		}
+
+		strcpy(lable[last_lable++], array[1]);
+
 	}
 //	else if(array[4][0] != '\0')
 //		error(1); // ERROR # 1
@@ -70,18 +69,21 @@ void check(char array[5][10], unsigned long int line)
 	else if(array_4_length > 1)
 		error(4); //ERROR # 4
 
-	if(! reserved(array[2]) )
+	if(array[2][0] != '\0')
 	{
-		error(11); //ERROR # 11
-	}
-	else
-	{
-		if(strcmp(array[2], "END") && array[3][0] == '\0')
-			error(13); //ERROR # 13
+		if(! reserved(array[2]) )
+		{
+			error(11); //ERROR # 11
+		}
 		else
 		{
-			if(! predefined(array[3] ) )
-				error(14); //ERROR # 14
+			if(strcmp(array[2], "END") && array[3][0] == '\0')
+				error(13); //ERROR # 13
+			else
+			{
+				if(! predefined(array[3] ) )
+					error(14); //ERROR # 14
+			}
 		}
 	}
 
@@ -119,6 +121,7 @@ void check(char array[5][10], unsigned long int line)
 
 	else if(array[2][0] == '\0')
 		error(10);//ERROR # 10
+
 }
 
 //---------------------------------------------------------------------------
@@ -148,7 +151,7 @@ int good_lable_name(char word[10])
 {
 	if(word[0] > '0' && word[0] < '9')
 		return 0;
-	if (strlen(word) > 4)
+	if (strlen(word) > 3)
 		return 0;
 	return 1;
 }
