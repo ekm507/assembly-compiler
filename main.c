@@ -18,6 +18,9 @@
 int main(int argc, char**argv)
 {
 
+	printf("\n--------------------------------------\n");
+
+
 	//get filename to compile
 	char filename[1000];
 	if(argc < 2)

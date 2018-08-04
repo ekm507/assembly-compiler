@@ -29,8 +29,8 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 			if(code[i] == ' ')
 			{
 				array[word][wordchar] = '\0';
-				word++;
 				wordchar = 0;
+				word++;
 			}
 			else if(code[i] == '\n')
 			{
@@ -46,20 +46,20 @@ int process(char* code, unsigned long int size, FILE *outputfile)
 				strcpy(array[4], "");
 			}
 			else
-			{
-				array[word][wordchar++] = code[i];
-			}
+				array[word][wordchar] = code[i];
 		}
 		else
 		{
-			send_error(0, line, array);
-			while( (code[++i] != '\n') && (i < size) );
+			send_error(0, line, array); //ERROR # 0
+			while( (++i != '\n') && (i < size) );
 			if(i < size)
 				i--;
 			word = 1;
 		}
 
+		wordchar++;
 	}
+
 	//returns 0 if there are no errors.
 	return 0;
 }

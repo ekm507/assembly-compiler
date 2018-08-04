@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define error(a) send_error((a), line, array)
+#define error(a) send_error( ( a ), line, array )
 
 int last_something = 0;
 char reserved_names[][10] = {"ADD", "AND", "LDA", "STA", "BUN", "BSA", "LSZ", "CLA", "CLE", 
@@ -19,21 +19,25 @@ int wordlast(char word[10], char last);
 
 void check(char array[5][10], unsigned long int line)
 {
+//	printf(" <%s - %s - %s - %s\n", array[1], array[2], array[3], array[4]);
 	static char lable[100][5];
 	static int last_lable = 0;
-	int has_lable = 1;
+	int has_lable;
 	if(wordlast(array[1], ',') )
+	{
 		array[1][strlen(array[1]) - 1] = '\0';
+		has_lable = 1;
+	}
 
 	else
 	{
 		has_lable = 0;
-		strcpy(array[4], array[3]);
+/*		strcpy(array[4], array[3]);
 		strcpy(array[3], array[2]);
 		strcpy(array[2], array[1]);
 		strcpy(array[1], "");
-	}
-
+*/	}
+//	printf(" >%s - %s - %s - %s\n", array[1], array[2], array[3], array[4]);
 	//start
 	if(has_lable)
 	{
@@ -46,7 +50,17 @@ void check(char array[5][10], unsigned long int line)
 			strcpy(lable[last_lable++], array[1]);
 		}
 	}
+//	else if(array[4][0] != '\0')
+//		error(1); // ERROR # 1
 
+	int array_4_length = strlen(array[4]);
+	if(array_4_length == 1)
+	{
+		if(array[4][0] != 'i')
+			error(4); // ERROR # 4
+	}
+	else if(array_4_length > 1)
+		error(4); //ERROR # 4
 
 }
 
@@ -55,8 +69,9 @@ void check(char array[5][10], unsigned long int line)
 //check if last char of the word is what you want
 int wordlast(char word[10], char last)
 {
-	if(word[ strlen(word) - 1] == last)
-		return 1;
+	if(strlen(word))
+		if(word[ strlen(word) - 1] == last)
+			return 1;
 	return 0;
 }
 
@@ -65,7 +80,7 @@ int wordlast(char word[10], char last)
 int reserved(char word[10])
 {
 	for(int i = 0; i < number_of_reserved; i++)
-		if(strcmp(word, reserved_names[i]) )
+		if( ! strcmp( word, reserved_names[i]) )
 			return 1;
 	return 0;
 }

@@ -1,20 +1,8 @@
-hello, how are you?/; augihrgh
-;
-
-
-
-;   ; 
-    ;
-hi
-lol ol ol
-mov %eax %ebx ; nice
-
-hi, a b c
-ADD a b c
-
-ok a b c
-
-1bv, a b c
-
-bvre, a
-
+l,
+ADD q i
+ADD p
+hi, ADD f i
+hi, AND g p
+lol lol lol lol lol
+ok ok ok ok ok ok ok ok
+p p p p p p
