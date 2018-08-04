@@ -6,11 +6,14 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 {
 	printf("\nERROR #%d in line %lu :\n", error_type, line);
 
-	for(int i = 1; i < 5; i++)
+	//print the line error has occured in
+	if(array[1][0] != '\0')
+	printf("%s, ", array[1]);
+	for(int i = 2; i <= 4; i++)
 		printf("%s ", array[i]);
 	printf("\n");
 
-
+	//print the proper error statement for the error code
 	switch(error_type)
 	{
 		case 0 :
@@ -60,6 +63,7 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 			break;
 
 		default :
+			//foralien errors
 			printf("unknown error! call the idiot programmer.");
 	}
 
