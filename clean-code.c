@@ -65,7 +65,7 @@ unsigned long int cleancode(char* code, unsigned long int size)
 			code[ j++ ] = code[i];
 	}
 	//finish :)
-
+	code[j] = '\0';
 	//return new code size.
 	return j;
 }

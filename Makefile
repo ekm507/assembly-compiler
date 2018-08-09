@@ -1,5 +1,5 @@
-a.out: main.o compiler.o clean-code.o process.o
-	gcc main.o compiler.o clean-code.o process.o -o compile
+a.out: main.o clean-code.o process.o check.o errors.o
+	gcc main.o clean-code.o process.o check.o errors.o -o compile
 
 main.o: main.c
 	gcc -c main.c
@@ -7,11 +7,14 @@ main.o: main.c
 process.o: process.c process.h
 	gcc -c process.c
 
-compiler.o: compiler.c compiler.h
-	gcc -c compiler.c
+check.o: check.c check.h
+	gcc -c check.c
 
 clean-code.o: clean-code.c clean-code.h
 	gcc -c clean-code.c
+
+errors.o: errors.h errors.c
+	gcc -c errors.c
 
 clean:
 	rm *.o compile
