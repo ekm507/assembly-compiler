@@ -1,8 +1,8 @@
-
 #include "check.h"
 #include "errors.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 //macro for sending errors more easily
 #define error(a) send_error( ( a ), line, array )
@@ -110,14 +110,14 @@ void check(char array[5][10], unsigned long int line)
 		else
 		{
 			//check if argumant comes after the instruvtion
-			if(strcmp(array[2], "END") && array[3][0] == '\0')
+			if(strcmp(array[2], "END") != 0 && array[3][0] == '\0')
 				error(13); //ERROR # 13
 			else
 			{
 				//check if the argument is predefined
 				if(! predefined(array[3] ) )
 					//but some instructions dont want a predefined one
-					if( ( strcmp(array[2], "HEX" ) && strcmp(array[2], "DEC") && strcmp(array[2], "ORG") ) )
+					if( ( strcmp(array[2], "HEX" ) != 0 && strcmp(array[2], "DEC") != 0 && strcmp(array[2], "ORG") != 0) )
 						error(14); //ERROR # 14
 			}
 		}

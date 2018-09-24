@@ -18,7 +18,7 @@
 int main(int argc, char**argv)
 {
 
-	printf("\n-------------------------------------PRECOMPILE-\n");
+	printf("\n--------------PRECOMPILE--------------\n");
 
 
 	//get filename to compile

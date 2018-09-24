@@ -9,19 +9,22 @@
 #include "errors.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 //process the code and compile it using compile function
 int process(char* code, unsigned long int size, FILE *outputfile)
 {
 
-
+    code[0] = ' ';
 	//remove all comments and useless newline or space characters.
 	size = cleancode(code, size);
 
 	//each line will be stored in this
-	char array[5][10] = {"", "", "", "", ""};
-
+	char array[5][10];
+	memset(array, 0, sizeof(array));
+    printf("arr: %s\n",array[0]);
+    printf("code: %c\n", code[0]);
 	//number of line we are doing stuff with
 	unsigned long int line = 1;
 

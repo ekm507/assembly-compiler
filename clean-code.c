@@ -1,6 +1,7 @@
 #include "clean-code.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 unsigned long int cleancode(char* code, unsigned long int size)
 {
@@ -51,7 +52,7 @@ unsigned long int cleancode(char* code, unsigned long int size)
 	for(i = 0; i < size; i++)
 		if(code[i] == '\n')
 		{
-			int j = i;
+			unsigned long int j = i;
 			while(code[--j] == ';');
 			if(code[j] == ' ')
 				code [j] = ';';
