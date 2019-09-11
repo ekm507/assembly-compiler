@@ -2,6 +2,8 @@
 #include "errors.h"
 #include <stdio.h>
 
+//changing the way errors are shown can be done here.
+//you can simply edit texts or add other errors.
 void send_error(int error_type, unsigned long int line, char array[5][10])
 {
 	printf("\nERROR #%d in line %lu :\n", error_type, line);
@@ -63,8 +65,8 @@ void send_error(int error_type, unsigned long int line, char array[5][10])
 			break;
 
 		default :
-			//foralien errors
-			printf("unknown error! call the idiot programmer.");
+			//for alien errors!
+			printf("unknown error! call the alien programmer!");
 	}
 
 	printf("\n");
