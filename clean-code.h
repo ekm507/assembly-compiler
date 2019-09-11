@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 
+//cleans an ASM code from all unwanted characters.
+//run it once on the code and it will be done :)
 unsigned long int cleancode(char *code, unsigned long int size);
 
 unsigned long int wordcount(char *code, unsigned long int size);
