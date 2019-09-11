@@ -3,6 +3,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+HOW cleancode FUNCTION WORKS!
+well, i've written it in a way yhat just works!
+so the old saying will be present here:
+don't touch it as long as it works. (Buddha)
+
+ok! so how it works?
+simply by replacing any unwanted character by semicolon(;) ,
+then removing all the semicolon from the code!
+Note that semicolon is usually used for commenting in ASM.
+*/
+
 unsigned long int cleancode(char* code, unsigned long int size)
 {
 	unsigned long int i;
@@ -73,6 +85,14 @@ unsigned long int cleancode(char* code, unsigned long int size)
 
 //-----------------------------------------------------------------------------------------//
 
+/*
+if we see a whole code as a string, then we will notice that
+words are seperated by whitespaces.
+since cleancode function has removed all TABs, there are only
+spaces and newlines.
+IMPORTANT NOTE:
+Use this function only after you've runned cleancode on the string.
+*/
 unsigned long int wordcount(char *code, unsigned long int size)
 {
 	if(size == 0)
@@ -99,7 +119,7 @@ void measure_words_length(char *code, unsigned long int size, int *words_length)
 	{
 		if(code[i] == '\n' || code[i] == ' ')
 		{
-		words_length[j++] = k;
+			words_length[j++] = k;
 			k = 0;
 		}
 		else
